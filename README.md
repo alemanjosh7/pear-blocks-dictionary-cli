@@ -1,1 +1,1 @@
-# pear-dictionary-cli
+# pear-blocks-dictionary-cli
