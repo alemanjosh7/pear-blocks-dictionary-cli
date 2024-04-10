@@ -4,43 +4,42 @@ import Hyperbee from 'hyperbee'
 import Pipe from 'bare-pipe'
 import b4a from 'b4a'
 
-async function pearblocks() {
-    const key = Pear.config.args[0]
+async function pearblocks () {
+  const key = Pear.config.args[0]
 
-    if (!key) throw new Error('provide a key')
+  if (!key) throw new Error('provide a key')
 
-    const store = new Corestore(Pear.config.storage)
+  const store = new Corestore(Pear.config.storage)
 
-    const swarm = new Hyperswarm()
-    Pear.teardown(() => swarm.destroy())
+  const swarm = new Hyperswarm()
+  Pear.teardown(() => swarm.destroy())
 
-    swarm.on('connection', (conn) => store.replicate(conn))
+  swarm.on('connection', (conn) => store.replicate(conn))
 
-    const core = store.get({ key: b4a.from(key, 'hex') })
+  const core = store.get({ key: b4a.from(key, 'hex') })
 
-    const bee = new Hyperbee(core, {
-        keyEncoding: 'utf-8',
-        valueEncoding: 'utf-8'
-    })
+  const bee = new Hyperbee(core, {
+    keyEncoding: 'utf-8',
+    valueEncoding: 'utf-8'
+  })
 
-    await core.ready()
+  await core.ready()
 
-    console.log('core key here is:', core.key.toString('hex'))
+  console.log('core key here is:', core.key.toString('hex'))
 
-    swarm.join(core.discoveryKey)
+  swarm.join(core.discoveryKey)
 
-    const stdin = new Pipe(0)
+  const stdin = new Pipe(0)
 
-    stdin.on('data', (data) => {
-        const word = data.toString().trim()
-        if (!word.length) return
-        bee.get(word).then(node => {
-            if (!node || !node.value) console.log(`No dictionary entry for ${word}`)
-            else console.log(`${word} -> ${node.value}`)
-            setImmediate(console.log)
-        }, console.error)
-    })
+  stdin.on('data', (data) => {
+    const word = data.toString().trim()
+    if (!word.length) return
+    bee.get(word).then(node => {
+      if (!node || !node.value) console.log(`No dictionary entry for ${word}`)
+      else console.log(`${word} -> ${node.value}`)
+      setImmediate(console.log)
+    }, console.error)
+  })
 }
 
 module.exports = pearblocks
-

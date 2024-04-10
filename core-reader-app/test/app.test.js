@@ -72,4 +72,3 @@ test('session get after closing it', async function (t) {
 
   await store.close()
 })
-
