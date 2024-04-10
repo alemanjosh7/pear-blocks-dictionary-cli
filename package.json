@@ -1,0 +1,34 @@
+{
+  "name": "pearblocks",
+  "version": "1.0.0",
+  "description": "CLI to have revelant information about pear blocks from holepunch documentation",
+  "main": "./blocks-reader-app/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alemanjosh7/pear-blocks-dictionary-cli.git"
+  },
+  "keywords": [
+    "pearblocks"
+  ],
+  "author": "alemanjosh7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alemanjosh7/pear-blocks-dictionary-cli/issues"
+  },
+  "homepage": "https://github.com/alemanjosh7/pear-blocks-dictionary-cli#readme",
+  "dependencies": {
+    "b4a": "^1.6.6",
+    "bare-fs": "^2.2.3",
+    "bare-pipe": "^2.0.6",
+    "bare-process": "^1.3.2",
+    "bare-runtime": "^1.2.0",
+    "corestore": "^6.18.1",
+    "hyperbee": "^2.19.1",
+    "hyperswarm": "^4.7.14",
+    "pear": "^1.0.2"
+  }
+}

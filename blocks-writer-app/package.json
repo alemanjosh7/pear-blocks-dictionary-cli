@@ -8,7 +8,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "brittle": "^3.0.0"
+    "brittle": "^3.5.0"
   },
   "scripts": {
     "dev": "pear dev",
